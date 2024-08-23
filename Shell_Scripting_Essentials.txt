@@ -1,0 +1,148 @@
+1. What is Linux Kernel?
+-> A shell provide an environment ti a user to execute commands and interact with kernel.
+
+2. How to check my shell type?
+-> Run the command - echo $0
+
+3. What is Shell Scripting?
+-> i) Shell script consist of set of commands to perform a task.
+   ii) All the commands execute sequentially.
+   iii) Some task like file manipulation, program execution, user interaction, automation of task can be done.
+
+4. First basic script -- ( how shell scripting looks like)
+
+	#!/bin/bash
+	
+	echo "Hello World"
+	
+5. What is SHEBANG?
+-> To tell your operating systems which interpreter to use to execute the script. This is the line - ( #!/bin/bash ).
+   Although this is not mandatory to write in your script, but its called a best practice.
+   
+6. How to send output to terminal?
+-> The echo command is use to send/print output to terminal. Ex - echo "Hello World".
+
+7. How to run a script?
+-> i) Make sure script has execute permission rwx. Use command -->  ls -l script_name.sh to check.
+	  and to change permission to execute the file, use command --> chmod +x script_name.sh
+   ii) Run using --
+                a) ./script.sh
+				b)/path/script.sh
+				c) sh script.sh
+				
+	iii) Ctrl + C to terminate or Ctrl + Z to stop
+	
+8. How to write comments in shell?
+-> Using #
+   # This is a comment
+   
+   Multi line comment
+   <<comment
+   ...
+   Your comments here
+   ...
+   comment
+   
+9. What are varibles?
+-> Variables are nothing but a container to store a value.
+   Example:--
+   
+   #!/bin/bash
+
+	name="Suman"
+	age=23
+	host=$(hostname)
+
+	echo "My name is $name and my age is $age"
+	echo "My hostname is $host"
+
+**Note:-- dont use spaces between variable name and its assign value(=)
+
+10. What is constant variable?
+->  Once you defined a variable and you dont wanna change the value of that variable. We use readonly command to define    constant variable in shell.
+
+Example:--
+
+	#!/bin/bash
+
+	readonly country="India"
+
+	echo "I Love $country"
+
+	country="USA"
+	
+11. Taking User Input in Shell:--
+
+   Using read command
+   
+   Example:--
+   
+    #!/bin/bash
+
+	echo "What is your name/"
+	read name
+
+	read -p "What is your age" age
+
+	echo "Name is $name and age is $age"
+
+
+12. If, elif and else statement use in shell: -- 
+
+#!/bin/bash
+
+read -p "Type your age: " age
+
+if [ $age -eq 18 ]
+then
+        echo "Congrats you are now  eligible to vote"
+elif [ $age -ge 18 ]
+then
+        echo "You can definitely vote"
+else
+        echo " You cant vote, sry!!!"
+fi
+
+
+13. Operators in Shell:--
+
+	i) Equal =>  -eq/==
+	ii) GreaterThanOrEqualTo => -ge
+	iii) LessThanOrEqualTo => -le
+	iv) NotEqualTo => -ne/!=
+	v) Greater Than => -gt
+	vi) Less Than => -lt
+	
+14. Check if file/directory exists : --
+
+	if [ -d folder_name] if folder exists
+	if [ ! -d folder_name] if folder not exists
+	
+	if [ -f file_name] if file exists
+	if [ ! -f file_name] if file not exists
+	
+15. echo $RANDOM --> given an random number between 1 and 32767
+16. echo $UID --> User ID of the user logged interact
+
+17. What is /DEV/NULL?
+->  In case of you dont wanna print the output of a command on terminal or write in a file,
+	we can redirect the output to /dev/null
+	
+	example:- #cd /root &> /dev/null
+	
+18. Useful concepts ---
+
+	Sleep - to create delay between two executions ex: sleep 1s/1m
+	
+	exit - to stop script at a point
+	
+	exit status $? - gives you status of previous command if that was successful
+	
+	if you want to maintain the logging for your script, you cam use logger in your script.
+	you can find the logs under 
+	/var/logs/messages
+	
+	example - #logger "Hey Buddy"
+	
+	if we can enable the debugging of the script using below in the script
+	set -x
